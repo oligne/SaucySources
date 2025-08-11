@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Saucy Sources Library",
+  "type": "object",
+  "properties": {
+    "version": { "const": 2 },
+    "user": { "type": "string", "enum": ["vincent", "coline"], "description": "Owner profile of this library snapshot" },
+    "lastSeenAt": { "type": "string", "format": "date-time", "description": "Timestamp of last visit (for unread counts)" },
+    "creators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["platform", "key", "profileURL"],
+        "properties": {
+          "platform": { "type": "string", "enum": ["youtube", "x", "substack", "linkedin"] },
+          "key": { "type": "string" },
+          "displayName": { "type": "string" },
+          "profileURL": { "type": "string", "format": "uri" },
+          "userTopics": { "type": "array", "items": { "type": "string" } },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "lastUpdateAt": { "type": "string", "format": "date-time", "description": "Future: last detected activity for this creator" }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["creatorCompositeKey", "originalURL", "addedAt"],
+        "properties": {
+          "id": { "type": "string", "description": "Unique id (uuid)" },
+          "creatorCompositeKey": { "type": "string" },
+          "originalURL": { "type": "string", "format": "uri" },
+          "topics": { "type": "array", "items": { "type": "string" } },
+          "read": { "type": "boolean", "default": false },
+          "addedAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "metadata": {
+            "type": "object",
+            "description": "Future: scraped info (title, summary, etc)",
+            "properties": {
+              "title": { "type": "string" },
+              "summary": { "type": "string" },
+              "image": { "type": "string", "format": "uri" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["version", "creators", "sources"]
+}

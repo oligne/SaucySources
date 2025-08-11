@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saucy Sources — Bibliothèque</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="library-page">
+  <div class="container">
+    <header class="header-bar">
+      <div class="left">
+        <a class="logout" href="login.html" title="Log out">log out</a>
+      </div>
+      <div class="brand" style="display:flex;align-items:baseline;gap:10px;justify-content:center">
+        <span class="owner-name"></span>
+        Saucy Sources.<sup class="badge-count">(0)</sup>
+      </div>
+      <div class="right">
+        <div class="toggle-icons" aria-label="Switch">
+          <a class="ico-btn" href="library_creator_vault.html" title="Library" id="icoLibrary">≡</a>
+          <a class="ico-btn" href="index_creator_vault.html" title="Add" id="icoAdd">＋</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero login-hero">
+      <div class="lead-row">
+        <p class="lead">Ressources</p>
+        <nav class="lead-controls">
+          <span class="filter-modes" id="filterModes">
+            <a href="#" id="byMedia" class="active">by media</a> |
+            <a href="#" id="byTopic">by topic</a> |
+            <a href="#" id="byRecent">by last update</a>
+          </span>
+        </nav>
+      </div>
+      <div>
+        <input id="search" class="pseudo-input search-input" placeholder="Search here." autocomplete="off" />
+      </div>
+      <div class="sub-filters" id="subFilters">
+        <!-- toggles instead of selects -->
+        <span id="platformToggle" class="toggle-links" style="display:none"></span>
+        <span id="topicToggle" class="toggle-links" style="display:none"></span>
+        <span id="recentToggle" class="latest-unread" style="display:none">
+          <a href="#" data-val="latest" class="active">latest</a> |
+          <a href="#" data-val="unread">unread</a>
+        </span>
+      </div>
+    </section>
+
+    <div class="card pad stack mt-20" style="display:none"></div>
+
+    <div id="grouped" class="mt-20"></div>
+    <div id="list" class="grid mt-20" style="display:none"></div>
+  </div>
+
+  <script>
+    // Mark the active icon and set owner name + count
+    (function(){
+      try{
+        const here = location.pathname.endsWith('library_creator_vault.html')? 'library' : 'add';
+        document.getElementById(here==='library'?'icoLibrary':'icoAdd')?.classList.add('active');
+        const raw=localStorage.getItem('creatorVault_v1');
+        const v=raw?JSON.parse(raw):{creators:[]};
+        document.querySelector('.badge-count').textContent = `(${v.creators?.length||0})`;
+        const p=(localStorage.getItem('saucy_current_profile')||'').trim();
+        document.querySelector('.owner-name').textContent = p? `${p.charAt(0).toUpperCase()+p.slice(1)}'s` : '';
+      }catch{}
+    })();
+  </script>
+  <script src="assets/js/library_creator_vault.js"></script>
+</body>
+</html>

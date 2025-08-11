@@ -1,0 +1,322 @@
+@font-face{font-family:'Inter';src:url('Inter-VariableFont_opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Dotrix';src:url('Dotrix Demo.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+
+:root{
+  /* Palette claire */
+  --bg:#FAF0CA;          /* Lemon chiffon */
+  --panel:#FFFFFF;       /* Cartes claires */
+  --text:#17043E;        /* Russian violet (texte) */
+  --muted:#5E4F7B;       /* Texte secondaire dérivé */
+  --brand:#F95738;       /* Tomato (action primaire) */
+  --brand-2:#EE964B;     /* Sandy brown (accent) */
+  --accent:#F4D35E;      /* Naples yellow (surfaces accent) */
+  --border:#F4D35E;      /* Bordures douces */
+  --shadow:rgba(23,4,62,.08);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter', ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  line-height:1.5;
+}
+
+.container{max-width:960px;margin:32px auto 64px;padding:0 20px}
+
+header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.header-center{justify-content:center}
+
+.brand{font-family:'Dotrix', Georgia, 'Times New Roman', serif;font-weight:400;letter-spacing:.3px;font-size:clamp(55px,4vw,65px)}
+.brand sup.badge-count{
+  font-family:'Dotrix', Georgia, 'Times New Roman', serif;
+  font-size:clamp(12px,1.5vw,25px);
+  font-weight:400;
+  margin-left:6px;
+  color:var(--brand);
+  position:relative;
+  top:-.3em;
+}
+
+h1{font-size:22px;margin:0;font-weight:700;letter-spacing:.2px}
+
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:0 6px 24px var(--shadow)}
+.pad{padding:20px}
+
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.stack{display:grid;gap:10px}
+
+input[type=text], select{
+  width:100%;
+  padding:14px 16px;
+  border-radius:12px;
+  background:#fff;
+  border:1px solid var(--border);
+  color:var(--text);
+  outline:none;
+}
+
+input::placeholder{color:color-mix(in srgb, var(--muted) 65%, #fff)}
+
+input[type=text]:focus, select:focus{
+  border-color:var(--brand);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--brand) 20%, transparent);
+}
+
+/* Refine pseudo input focus: no blue ring, just caret */
+.input{caret-color:var(--brand);appearance:none;-webkit-appearance:none}
+.pseudo-input:focus{outline:none !important;box-shadow:none !important;border-bottom-color:var(--brand)}
+.pseudo-input:focus::placeholder{color:transparent}
+
+/* Toggle switch for Add | Library */
+.toggle{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:#fff}
+.toggle a{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;color:var(--text);text-decoration:none;font-weight:600}
+.toggle a.active{background:color-mix(in srgb, var(--accent) 25%, #fff)}
+
+/* Smaller pseudo-style input (for library search) */
+.pseudo-input--sm{font-size:clamp(18px,3.5vw,28px);border-bottom-width:3px}
+
+button{padding:12px 16px;border-radius:12px;border:1px solid transparent;background:var(--brand);color:#fff;cursor:pointer;font-weight:650}
+button:hover{background:#e64f31}
+
+.secondary{background:transparent;border-color:var(--border);color:var(--text)}
+.secondary:hover{background:color-mix(in srgb, var(--accent) 25%, #fff)}
+
+.danger{background:var(--brand);color:#fff}
+
+.tabs{display:inline-flex;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff}
+.tab{background:transparent;color:var(--text);border:none;padding:10px 14px;cursor:pointer}
+.tab.active{background:color-mix(in srgb, var(--accent) 25%, #fff)}
+
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:780px){ .grid{grid-template-columns:1fr 1fr} }
+
+.creator{display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center;padding:14px;border:1px solid var(--border);border-radius:14px;background:#fff}
+.badge{display:inline-block;padding:6px 10px;font-size:12px;border:1px solid var(--border);border-radius:999px;color:var(--text);min-width:100px;text-align:center;background:color-mix(in srgb, var(--accent) 30%, #fff)}
+.title{font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.section{margin-top:20px}
+.section h2{font-size:16px;margin:0 0 10px 0;display:flex;justify-content:space-between;align-items:baseline}
+.count{color:var(--muted);font-size:12px}
+
+.hint{font-size:12px;color:var(--muted)}
+.error{color:var(--brand);font-size:14px}
+
+.list{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+
+/* Utilities */
+.ml-auto{margin-left:auto}
+.justify-end{justify-content:flex-end}
+.mt-20{margin-top:20px}
+.text-center{text-align:center}
+.subtitle{font-size:12px;color:var(--muted);text-align:center;margin-top:4px}
+.center{max-width:680px;margin:0 auto}
+
+/* Brand header and hero extras */
+.actions{display:flex;gap:8px}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--text);text-decoration:none}
+.icon-btn:hover{background:color-mix(in srgb, var(--accent) 20%, #fff)}
+
+.hero{padding:28px 0 8px;color:var(--muted)}
+.hero .lead{font-size:40px;margin:0 0 8px 0;color:var(--text);font-weight:700;letter-spacing:.2px}
+.cta-underline{color:var(--brand);text-decoration:underline;cursor:text}
+
+/* Pills inside lists */
+.pill{background:color-mix(in srgb, var(--accent) 18%, #fff);border-radius:999px;padding:2px 8px;font-size:11px;border:1px solid var(--border)}
+
+/* Login styling */
+.pseudo-input{font-size:clamp(32px,5vw,64px);font-weight:700;padding:8px 0;border:none;border-bottom:4px solid var(--brand);background:transparent;color:var(--brand);border-radius:0;width:100%;max-width:520px;letter-spacing:.2px}
+.pseudo-input::placeholder{color:var(--brand)}
+.login-hero{padding:200px 0}
+
+.enter-link{display:inline;color:var(--brand);text-decoration:none;font-weight:600}
+.enter-link:hover{opacity:1}
+#continueLink{display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+#continueLink:hover{ text-decoration:none }
+#continueLink .enter-link{ color:var(--brand); font-weight:600; text-decoration:none }
+#continueLink:hover .enter-link{ font-weight:700 }
+
+/* Header bar with centered brand + left/right actions */
+.header-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.header-bar .left{display:flex;align-items:center;gap:10px}
+.header-bar .right{display:flex;align-items:center;gap:10px;justify-content:flex-end}
+
+/* Owner (pseudo) before brand in Dotrix, smaller */
+.owner-name{font-family:'Dotrix', Georgia, 'Times New Roman', serif;font-weight:400;font-size:clamp(16px,1.8vw,24px);margin-right:12px;color:var(--text)}
+
+/* Icon-style toggle (Library ≡ | Add ＋) */
+.toggle-icons{display:inline-flex;gap:10px;border:1px solid var(--border);border-radius:999px;padding:6px 8px;background:color-mix(in srgb, var(--accent) 25%, #fff);box-shadow:0 6px 24px var(--shadow)}
+.toggle-icons .ico-btn{width:44px;height:44px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;border:1px solid color-mix(in srgb, var(--border) 70%, #fff);background:#fff;color:var(--brand);font-size:22px;font-weight:800;text-decoration:none}
+.toggle-icons .ico-btn:hover{background:color-mix(in srgb, var(--accent) 35%, #fff)}
+.toggle-icons .ico-btn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+/* Logout link (top-left) */
+a.logout{font-size:12px;color:var(--muted);text-decoration:none}
+a.logout:hover{text-decoration:underline}
+
+/* Search bar tweaks: smaller type but wider field */
+.search-input{font-size:clamp(16px,2.8vw,22px);min-width:440px}
+
+/* Filter modes styling */
+.filter-modes a{color:var(--muted);font-weight:700}
+.filter-modes a.active{color:var(--text)}
+
+/* Typography harmonization (match login/add) */
+.library-page .hero .lead{font-size:40px;margin:0 0 8px 0;color:var(--text);font-weight:700;letter-spacing:.2px}
+.library-page .subtitle{font-size:12px;color:var(--muted);text-align:center;margin-top:4px}
+
+/* Cards look closer to mockups */
+.library-page .creator{background:color-mix(in srgb, var(--accent) 12%, #fff);border-radius:24px;border:1px solid color-mix(in srgb, var(--border) 70%, #fff);padding:16px 18px}
+.library-page .badge{background:color-mix(in srgb, var(--accent) 30%, #fff);border-radius:999px;min-width:92px}
+.library-page .title{color:var(--brand);font-weight:700}
+.library-page .sub{color:var(--muted)}
+
+/* Section headers */
+.library-page .section h2{font-size:12px;font-weight:800;letter-spacing:.4px;color:#221a38;text-transform:uppercase}
+
+/* Search input like login (but smaller) */
+.library-page .search-input{font-weight:700;border-bottom-width:3px;max-width:720px;width:100%}
+
+/* Right-aligned hero like Add page */
+.hero-right{ text-align:right }
+.hero-right .lead{ font-size:clamp(32px,5vw,64px); font-weight:700; color:var(--text); margin:0 0 8px 0 }
+.hero-right .subtitle{ text-align:right }
+
+/* Move Library hero higher and tighten spacing further */
+.library-page .login-hero{padding: 1000px 0 6px}
+.library-page .login-hero .lead{margin:0 0 6px 0}
+
+/* Cards layout closer to mockup on Library */
+.library-page #grouped, .library-page #list{max-width:1040px;margin-left:auto;margin-right:auto}
+.library-page .creator{grid-template-columns:1fr auto;border-radius:28px;background:color-mix(in srgb, var(--accent) 14%, #fff)}
+.library-page .creator .badge{display:none}
+.library.page .creator .stack{display:none}
+.library-page .title{color:var(--brand);font-weight:700}
+
+/* Section label pills (Media / Topic) shown above groups */
+.label-pill{display:inline-block;background:#2A1E4C;color:#fff;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:800;letter-spacing:.3px;margin:10px 0 6px 40px}
+.topic-pill{background:#2A1E4C}
+.media-pill{background:#2A1E4C}
+
+/* Row text and inline topic tag pill inside card */
+.inline-pill{background:#2A1E4C;color:#fff;border-radius:999px;padding:2px 8px;font-size:11px;margin-left:8px}
+
+/* Search in hero under title (smaller than Add) */
+.library-page .hero .search-input{font-size:clamp(18px,3.2vw,26px);max-width:560px}
+.library-page .creator .title .creator-link{color:var(--brand);text-decoration:none}
+.library.page .creator .title .creator-link:hover{text-decoration:underline}
+.library-page .topic-row{margin-top:4px}
+
+/* Left align and enlarge filter modes under search */
+.filter-modes{margin-top:10px; text-align:left}
+.filter-modes--lg a{font-size:18px; margin-right:8px}
+.filter-modes--lg a + a::before{content:"|"; color:var(--muted); margin:0 8px 0 4px}
+
+/* Expandable filter options row */
+.filter-options{margin-top:10px; display:flex; flex-wrap:wrap; gap:12px}
+.filter-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--text);cursor:pointer}
+.filter-chip.active{background:color-mix(in srgb, var(--accent) 25%, #fff);border-color:var(--brand);color:var(--text)}
+
+/* Toggle link groups under search */
+.toggle-links a{color:var(--muted);font-weight:700;text-decoration:none}
+.toggle-links a.active{color:var(--text)}
+.toggle-links a + a::before{content:"|"; color:var(--muted); margin:0 8px 0 8px}
+
+/* Lead row: title + controls inline */
+.lead-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lead-row .lead{margin:0}
+.lead-controls{display:flex;align-items:center;gap:10px;color:var(--muted)}
+
+/* Sub-filters under search */
+.sub-filters{margin-top:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.sub-filters .inline-select{padding:6px 10px;border-radius:10px;border:1px solid var(--border);background:#fff;color:var(--text);font-weight:600}
+.sub-filters .latest-unread a{color:var(--muted);font-weight:700;text-decoration:none}
+.sub-filters .latest-unread a.active{color:var(--text)}
+
+/* tighten hero since controls moved up */
+.library-page .login-hero{padding:40px 0 8px}
+
+/* Hide old chips row space if any */
+.filter-options{display:none}
+
+/* Text-only Library styling (minimal) */
+.library-page .creator{background:transparent;border:none;padding:8px 0;grid-template-columns:auto 1fr auto;align-items:baseline}
+.library-page .creator .badge{display:none}
+.library.page .creator .title{color:var(--text);font-weight:800}
+.library.page .creator .title .creator-link{color:var(--text);text-decoration:none}
+.library.page .creator .title .creator-link:hover{text-decoration:underline}
+.library-page .sub{color:var(--muted)}
+
+/* Section labels as plain text */
+.label-pill{background:transparent;color:var(--muted);border-radius:0;padding:0;font-size:12px;font-weight:800;letter-spacing:.3px;margin:18px 0 6px 0}
+
+/* Topic as plain text */
+.inline-pill{background:transparent;border:none;padding:0;font-size:12px;margin-left:8px;color:var(--text);font-weight:700}
+.topic-text{color:var(--text);font-weight:700;margin-left:8px}
+
+/* Count in parentheses before title */
+.new-count{font-family:'Dotrix', Georgia, 'Times New Roman', serif;color:var(--brand);font-size:clamp(14px,1.2vw,20px);margin-right:10px}
+
+/* Discreet delete icon */
+.creator .del{color:var(--muted);opacity:.6;text-decoration:none;font-size:16px;padding:2px 6px;border-radius:6px}
+.creator .del:hover{color:var(--brand);opacity:1}
+
+/* Ensure section blocks keep center width but no card look */
+.library-page #grouped, .library-page #list{max-width:1040px;margin-left:auto;margin-right:auto}
+
+/* Minimal list link colors and weights */
+.library-page .creator .creator-link{color:var(--text);text-decoration:none}
+.library-page .creator .creator-link:hover{text-decoration:underline}
+.library-page .topic-row{margin-top:2px}
+.library-page .sub{font-size:14px}
+
+/* Keep hero compact for minimal design */
+.library-page .login-hero{padding:100px 0 6px}
+
+/* Inline topic editor */
+.topic-editable{display:inline-block;min-width:80px;padding:2px 4px;border-radius:4px;color:var(--text);font-weight:700;outline:none}
+.topic-editable[contenteditable="true"]{background:color-mix(in srgb, var(--accent) 30%, #fff);}
+.topic-editable[data-empty="true"]{color:var(--muted);font-weight:600}
+
+/* Topic chips (text-only) */
+.topic-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:2px}
+.topic-chip{display:inline-flex;align-items:center;gap:6px;color:var(--text);font-weight:700}
+.topic-chip .x{color:var(--muted);text-decoration:none;font-weight:800}
+.topic-chip .x:hover{color:var(--brand)}
+.topic-add{color:var(--muted);text-decoration:none;font-weight:700}
+.topic-add:hover{color:var(--text)}
+.topic-input{min-width:120px;padding:2px 4px;border:none;border-bottom:2px solid var(--brand);outline:none;background:transparent;color:var(--text);font-weight:700}
+
+/* Discreet topic UI */
+.topic-chip{font-weight:600;color:var(--muted)}
+.topic-chip .x{opacity:.7}
+.topic-chip .x:hover{opacity:1;color:var(--brand)}
+.topic-add{font-weight:600;color:var(--muted)}
+.topic-input{border-bottom-color:color-mix(in srgb, var(--brand) 50%, var(--border))}
+
+/* Mark read/unread link */
+.mark{color:var(--muted);text-decoration:none;font-weight:650}
+.mark:hover{color:var(--text);text-decoration:underline}
+
+/* Transparent topic input for minimal look */
+.topic-input{background:transparent !important}
+.topic-input:focus{border-bottom-color:var(--brand); box-shadow:none}
+
+/* Add page: reuse minimal library list styling */
+.add-page #last{max-width:1040px;margin:30px auto 0px;padding:0 20px}
+.add-page .creator{background:transparent;border:none;padding:8px 0;display:grid;grid-template-columns:auto 1fr auto;align-items:baseline}
+.add-page .title{color:var(--text);font-weight:800}
+.add-page .sub{color:var(--muted);font-size:14px}
+.add-page .new-count{font-family:'Dotrix', Georgia, 'Times New Roman', serif;color:var(--brand);font-size:clamp(14px,1.2vw,20px);margin-right:10px}
+.add-page .creator-link{color:var(--text);text-decoration:none}
+.add-page .creator-link:hover{text-decoration:underline}
+.add-page .topic-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:2px}
+.add-page .topic-chip{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-weight:600}
+.add-page .topic-chip .x{opacity:.7}
+.add-page .topic-chip .x:hover{opacity:1;color:var(--brand)}

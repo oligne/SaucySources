@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "user": "vincent",
+  "lastSeenAt": "2025-08-11T10:00:00.000Z",
+  "creators": [
+    {
+      "platform": "youtube",
+      "key": "vz-ion",
+      "displayName": "VZION",
+      "profileURL": "https://www.youtube.com/@vz-ion",
+      "userTopics": ["watch", "ai"],
+      "createdAt": "2025-08-10T09:00:00.000Z",
+      "lastUpdateAt": "2025-08-11T08:00:00.000Z"
+    }
+  ],
+  "sources": [
+    {
+      "id": "src_1",
+      "creatorCompositeKey": "youtube|vz-ion",
+      "originalURL": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "topics": ["watch"],
+      "read": false,
+      "addedAt": "2025-08-11T08:00:00.000Z",
+      "updatedAt": "2025-08-11T08:00:00.000Z",
+      "metadata": { "title": "Great video", "summary": "..." }
+    }
+  ]
+}

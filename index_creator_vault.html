@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saucy Sources — Ajout</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="add-page">
+  <div class="container">
+    <header class="header-bar">
+      <div class="left">
+        <a class="logout" href="login.html" title="Log out">log out</a>
+      </div>
+      <div class="brand" style="display:flex;align-items:baseline;gap:10px;justify-content:center">
+        <span class="owner-name"></span>
+        Saucy Sources.<sup class="badge-count">(0)</sup>
+      </div>
+      <div class="right">
+        <div class="toggle-icons" aria-label="Switch">
+          <a class="ico-btn" href="library_creator_vault.html" title="Library" id="icoLibrary">≡</a>
+          <a class="ico-btn" href="index_creator_vault.html" title="Add" id="icoAdd">＋</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero login-hero">
+      <p class="lead">Add a source ?</p>
+      <div>
+        <input id="urlInput" class="pseudo-input" placeholder="Paste it here." autocomplete="off" />
+      </div>
+      <div class="hint">If YouTube embed is blocked, paste a channel or handle URL instead.</div>
+      <div class="mt-20">
+        <a id="addEnter" href="#" class="enter-icon">↵ <span class="enter-link">Enter to continue</span></a>
+      </div>
+    </section>
+
+    <div id="last" class="list mt-20"></div>
+  </div>
+
+  <script>
+    // Mark the active icon and set owner name + count
+    (function(){
+      try{
+        const here = location.pathname.endsWith('index_creator_vault.html')? 'add' : 'library';
+        document.getElementById(here==='library'?'icoLibrary':'icoAdd')?.classList.add('active');
+        const raw=localStorage.getItem('creatorVault_v1');
+        const v=raw?JSON.parse(raw):{creators:[]};
+        document.querySelector('.badge-count').textContent = `(${v.creators?.length||0})`;
+        const p=(localStorage.getItem('saucy_current_profile')||'').trim();
+        document.querySelector('.owner-name').textContent = p? `${p.charAt(0).toUpperCase()+p.slice(1)}'s` : '';
+      }catch{}
+    })();
+
+    // Update badge count from localStorage
+    (function(){
+      try{
+        const raw=localStorage.getItem('creatorVault_v1');
+        const v=raw?JSON.parse(raw):{creators:[]};
+        const n=v.creators?.length||0;
+        const el=document.querySelector('.badge-count'); if(el) el.textContent=`(${n})`;
+      }catch{}
+    })();
+
+    // Enter-to-continue for add page styled like login
+    (function(){
+      const a=document.getElementById('addEnter');
+      if(a){ a.addEventListener('click', e=>{ e.preventDefault(); document.getElementById('addBtn')?.click(); }); }
+      const input=document.getElementById('urlInput');
+      if(input){ input.addEventListener('keydown', e=>{ if(e.key==='Enter'){ document.getElementById('addBtn')?.click(); } }); }
+    })();
+  </script>
+  <script src="assets/js/index_creator_vault.js"></script>
+</body>
+</html>
